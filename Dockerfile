@@ -10,8 +10,10 @@ WORKDIR /usr/local/bin
 RUN curl -R -O https://s3.amazonaws.com/rebar3/rebar3 && chmod +x rebar3
 
 WORKDIR /opt/test-runner
-COPY rebar.config rebar.lock ./
-RUN rebar3 get-deps
+
+COPY pre-compiled/ .
+RUN make
+RUN make test
 
 COPY . .
 ENTRYPOINT ["/opt/test-runner/bin/run.sh"]

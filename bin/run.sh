@@ -24,7 +24,7 @@ fi
 slug="$1"
 input_dir="${2%/}"
 output_dir="${3%/}"
-test_file="${input_dir}/test/${slug}-tests.lfe"
+root_dir=$(realpath $(dirname "$0")/..)
 results_file="${output_dir}/results.json"
 
 # Create the output directory if it doesn't exist
@@ -34,12 +34,14 @@ echo "${slug}: testing..."
 
 pushd "${input_dir}" > /dev/null
 
-make test
+cp -R "${root_dir}/_build" .
+
+make
 
 # Run the tests for the provided implementation file and redirect stdout and
 # stderr to capture it
-# TODO: Replace 'RUN_TESTS_COMMAND' with the command to run the tests
-test_output=$(RUN_TESTS_COMMAND 2>&1)
+test_output=$(make test 2>&1)
+
 exit_code=$?
 
 popd > /dev/null
