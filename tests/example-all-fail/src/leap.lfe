@@ -3,10 +3,10 @@
 
 (defun leap-year
   ([year] (when (=:= (rem year 400) 0))
-   'true)
-  ([year] (when (=:= (rem year 100) 0))
    'false)
-  ([year] (when (=:= (rem year 4) 0))
+  ([year] (when (=:= (rem year 100) 0))
    'true)
+  ([year] (when (=:= (rem year 4) 0))
+   'false)
   ([_]
-   'false))
+   'true))

@@ -36,8 +36,6 @@ pushd "${input_dir}" > /dev/null
 
 cp -R "${root_dir}/_build" .
 
-make
-
 # Run the tests for the provided implementation file and redirect stdout and
 # stderr to capture it
 test_output=$(make test 2>&1)
@@ -51,19 +49,10 @@ popd > /dev/null
 if [ $exit_code -eq 0 ]; then
     jq -n '{version: 1, status: "pass"}' > ${results_file}
 else
-    # OPTIONAL: Sanitize the output
-    # In some cases, the test output might be overly verbose, in which case stripping
-    # the unneeded information can be very helpful to the student
-    # sanitized_test_output=$(printf "${test_output}" | sed -n '/Test results:/,$p')
+    # Sanitize the output
+    sanitized_test_output=$(printf "${test_output}" | sed -E -e '1,2d' -e '/^(===>| ~~>)/d')
 
-    # OPTIONAL: Manually add colors to the output to help scanning the output for errors
-    # If the test output does not contain colors to help identify failing (or passing)
-    # tests, it can be helpful to manually add colors to the output
-    # colorized_test_output=$(echo "${test_output}" \
-    #      | GREP_COLOR='01;31' grep --color=always -E -e '^(ERROR:.*|.*failed)$|$' \
-    #      | GREP_COLOR='01;32' grep --color=always -E -e '^.*passed$|$')
-
-    jq -n --arg output "${test_output}" '{version: 1, status: "fail", output: $output}' > ${results_file}
+    jq -n --arg output "${sanitized_test_output}" '{version: 1, status: "fail", output: $output}' > ${results_file}
 fi
 
 echo "${slug}: done"
