@@ -1,1 +1,3 @@
-tests/**/results.json
+tests/*/results.json
+tests/*/_build/
+tests/*/rebar3.crashdump
