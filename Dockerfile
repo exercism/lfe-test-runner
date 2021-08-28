@@ -6,9 +6,6 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-WORKDIR /usr/local/bin
-RUN curl -R -O https://s3.amazonaws.com/rebar3/rebar3 && chmod +x rebar3
-
 WORKDIR /opt/test-runner
 
 COPY pre-compiled/ .

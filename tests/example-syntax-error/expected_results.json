@@ -1,5 +1,5 @@
 {
   "version": 1,
   "status": "fail",
-  "output": "/solution/src/leap.lfe:99999: missing token\n\nMakefile:20: recipe for target 'test' failed\nmake: *** [test] Error 1"
+  "message": "/opt/test-runner/tests/example-syntax-error/src/leap.lfe:99999: missing token\n\nMakefile:20: recipe for target 'test' failed\nmake: *** [test] Error 1"
 }

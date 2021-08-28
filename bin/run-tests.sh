@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Synopsis:
-# Test the test runner by running it against a predefined set of solutions 
+# Test the test runner by running it against a predefined set of solutions
 # with an expected output.
 
 # Output:
@@ -23,12 +23,9 @@ for test_dir in tests/*; do
     bin/run.sh "${test_dir_name}" "${test_dir_path}" "${test_dir_path}"
 
     # Normalize the results file
-    sed -i -E \
-      -e '/Finished in .* seconds/d' \
-      -e '/=ERROR REPORT=/d' \
-      -e '/Error in process .* with exit value/d' \
-      -e "s~${test_dir_path}~/solution~g" \
-      "${results_file_path}"
+    sed -i -E 's/=ERROR REPORT==== .* ===/=ERROR REPORT==== XXX ===/g' "${results_file_path}"
+    sed -i -E 's/Error in process .* with exit value/Error in process XXX with exit value/g' "${results_file_path}"
+    sed -i -E 's/Finished in .* seconds/Finished in XXX seconds/g' "${results_file_path}"
 
     echo "${test_dir_name}: comparing results.json to expected_results.json"
     diff "${results_file_path}" "${expected_results_file_path}"
