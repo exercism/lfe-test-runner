@@ -44,7 +44,7 @@ exit_code=$?
 
 popd > /dev/null
 
-# Write the results.json file based on the exit code of the command that was 
+# Write the results.json file based on the exit code of the command that was
 # just executed that tested the implementation file
 if [ $exit_code -eq 0 ]; then
     jq -n '{version: 1, status: "pass"}' > ${results_file}
@@ -52,7 +52,7 @@ else
     # Sanitize the output
     sanitized_test_output=$(printf "${test_output}" | sed -E -e '1,2d' -e '/^(===>| ~~>)/d')
 
-    jq -n --arg output "${sanitized_test_output}" '{version: 1, status: "fail", output: $output}' > ${results_file}
+    jq -n --arg output "${sanitized_test_output}" '{version: 1, status: "fail", message: $output}' > ${results_file}
 fi
 
 echo "${slug}: done"
