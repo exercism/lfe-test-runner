@@ -1,4 +1,4 @@
-FROM erlang:19.3.6.13
+FROM erlang:25
 
 RUN apt-get update && \
     apt-get install -y curl jq && \
