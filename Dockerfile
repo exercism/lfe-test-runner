@@ -1,10 +1,6 @@
-FROM erlang:25.2.3.0
+FROM erlang:25-alpine
 
-RUN apt-get update && \
-    apt-get install -y curl jq && \
-    apt-get purge --auto-remove -y && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache bash jq coreutils make
 
 WORKDIR /opt/test-runner
 
