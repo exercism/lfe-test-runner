@@ -1,5 +1,5 @@
 {
   "version": 1,
   "status": "fail",
-  "message": "\u001b[0;32m.\u001b[0m\u001b[0;32m.\u001b[0m\u001b[0;32m.\u001b[0m\u001b[0;31mF\u001b[0m\nFailures:\n\n  1) leap-tests:fourth_century_test/0\n\u001b[0;31m     Failure/Error: ?assert((leap:leap-year 2400))\n       expected: true\n            got: false\u001b[0m\n\u001b[0;36m     % eunit_proc.erl:346:in `eunit_proc:with_timeout/3`\u001b[0m\n\u001b[0;36m     Output: \u001b[0m\n\u001b[0;36m     Output: \u001b[0m\n\nFinished in XXX seconds\n\u001b[0;31m4 tests, 1 failures\n\u001b[0m===> Error running tests\nmake: *** [Makefile:20: test] Error 1"
+  "message": "\u001b[0;32m.\u001b[0m\u001b[0;32m.\u001b[0m\u001b[0;32m.\u001b[0m\u001b[0;31mF\u001b[0m\nFailures:\n\n  1) leap-tests:fourth_century_test/0\n\u001b[0;31m     Failure/Error: ?assert((leap:leap-year 2400))\n       expected: true\n            got: false\u001b[0m\n\u001b[0;36m     % eunit_proc.erl:358:in `eunit_proc:with_timeout/3`\u001b[0m\n\u001b[0;36m     Output: \u001b[0m\n\u001b[0;36m     Output: \u001b[0m\n\nFinished in XXX seconds\n\u001b[0;31m4 tests, 1 failures\n\u001b[0m===> Error running tests\nmake: *** [Makefile:20: test] Error 1"
 }
