@@ -1,4 +1,4 @@
-FROM erlang:25.2.3.0-alpine
+FROM erlang:26.2.4.0-alpine
 
 RUN apk add --no-cache bash jq coreutils make
 
