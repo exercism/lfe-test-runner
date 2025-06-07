@@ -26,8 +26,8 @@ for test_dir in tests/*; do
     sed -i -E -e 's/=ERROR REPORT==== .* ===/=ERROR REPORT==== XXX ===/g' \
               -e 's/Error in process .* with exit value/Error in process XXX with exit value/g' \
               -e 's/Finished in .* seconds/Finished in XXX seconds/g' \
+              -e 's~/usr/local/lib/erlang/lib/eunit-[^/]+/include/eunit\.hrl~include/eunit.hrl~g' \
               -e "s~${test_dir_path}~/solution~g" "${results_file_path}"
-
     echo "${test_dir_name}: comparing results.json to expected_results.json"
     diff "${results_file_path}" "${expected_results_file_path}"
 
